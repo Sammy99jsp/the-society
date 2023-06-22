@@ -483,6 +483,11 @@
             .addEventListener("click", () => {
                 window.location.reload();
             })
+
+        fullscreen_btn
+            .addEventListener("click", () => {
+                document.body.webkitRequestFullscreen();
+            })
         
         let current_prompt = 0;
         let cancellable_prompt_loop = 0;
