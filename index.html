@@ -17,6 +17,9 @@
             --green : #67877c;
             --red   : #F7717D;
             --violet: #856084;
+
+            --big-text: 72pt;
+            --text: 48pt;
         }
         
         body {
@@ -57,7 +60,7 @@
         }
 
         .subtitles > button.begin {
-            font-size: 72pt;
+            font-size: var(--big-text);
             color: #67877c;
         
             animation: shiny 1000ms ease 1000ms infinite alternate, float-in 1500ms cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
@@ -74,7 +77,7 @@
                 border: 1px solid var(--green);
                 margin: 5px;
                 padding: 5px;
-                font-size: 40pt;
+                font-size: var(--text);
                 max-height: 1.5em;
                 aspect-ratio: auto;
                 color: var(--green);
@@ -106,14 +109,14 @@
         .container {
             display: flex;
             flex-direction: column;
-            width: calc(100dvw - 2em);
-            height: calc(100dvh - 2em);
+            width: 100dvw;
+            height: 100dvh;
         }
         
         h1 {
             font-weight: 400;
-            font-size: 52pt;
-            line-height: 26pt;
+            font-size: calc(var(--text) * 1.2);
+            line-height: calc(var(--text) * 0.7);
         } 
 
         .player {
@@ -160,9 +163,9 @@
         }
 
         .subtitles p[is="timer-el"] {
-            margin-top: 30pt;
+            margin-top: calc(0.75 * var(--text));
 
-            font-size: 90pt !important;
+            font-size: calc(2.25 * var(--text)) !important;
             line-height: 0px;
             text-align: center;
         }
@@ -219,9 +222,9 @@
 
             position: relative;
             text-align: center;
-            font-size: 40pt;
+            font-size: var(--text);
 
-            line-height: 40pt;
+            line-height: var(--text);
 
             margin-top: var(--margin);
             margin-bottom: var(--margin);
@@ -327,20 +330,20 @@
         .admin {
             border: none;
             position: absolute;
-            width: 7.5em;
-            height: 7.5em;
+            width: 75px;
+            height: 75px;
             background-color: black;
             z-index: 10;
         }
 
         .admin_back {
-            bottom: 0em;
-            right: 0em;
+            bottom: 0;
+            right: 0;
         }
 
         .admin_fullscreen {
-            bottom: 0em;
-            left: 0em;
+            bottom: 0;
+            left: 0;
         }
 
     </style>
