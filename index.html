@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Society</title>
+    <style>
+
+
+        @import url("https://use.typekit.net/lfy3gvx.css");
+        
+        :root {
+            --grey-0  : #222323;
+            --grey-1  : #474848;
+
+            --white : #d8d8d9;
+            --green : #67877c;
+            --red   : #F7717D;
+            --violet: #856084;
+        }
+        
+        body {
+            /* background-color: var(--grey-0); */
+            background-color: black;
+            color: var(--white);
+            font-family: "antiquarian", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            margin: none;
+            padding: 0;
+        }
+
+        button {
+            font-family: "antiquarian", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+
+            padding: 0em 1em;
+            background-color: #67877c;
+            background-color: transparent;
+            outline: #67877c;
+            border: none;
+            cursor: pointer;
+            padding: 2.5px;
+            margin: 0px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            aspect-ratio: 1/1;
+            min-width: max-content;
+
+            transition: all 1500ms linear;
+            opacity: 1;
+        }
+
+        .subtitles > button.begin.delete {
+            opacity: 0;
+        }
+
+        .subtitles > button.begin {
+            font-size: 72pt;
+            color: #67877c;
+        
+            animation: shiny 1000ms ease 1000ms infinite alternate, float-in 1500ms cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        }
+
+        .subtitles #setup {
+
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            max-width: 85%;
+
+            > button {
+                border: 1px solid var(--green);
+                margin: 5px;
+                padding: 5px;
+                font-size: 40pt;
+                max-height: 1.5em;
+                aspect-ratio: auto;
+                color: var(--green);
+            }
+        } 
+
+        @keyframes fadeout {
+            0% {
+                overflow: hidden;
+                height: fit-content;
+            }
+
+            100% {
+                height: 0;
+            }
+        }
+
+        @keyframes shiny {
+            0% {
+                filter: brightness(1) drop-shadow(2px 2px 2px #35453F);
+            }
+
+            100% {
+                filter: brightness(2) drop-shadow(2px 2px 2px #6c8d81);
+            }
+
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: calc(100dvw - 2em);
+            height: calc(100dvh - 2em);
+        }
+        
+        h1 {
+            font-weight: 400;
+            font-size: 52pt;
+            line-height: 26pt;
+        } 
+
+        .player {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .player > .progress {
+            position: relative;
+            flex-grow: 1;
+            height: 5px;
+        }
+
+        .player > button {
+            background-color: transparent;
+            outline: #67877c;
+            border: none;
+            cursor: pointer;
+            padding: 2.5px;
+            margin: 0px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            aspect-ratio: 1/1;
+            min-width: max-content;
+        }
+
+        .player > button:focus {
+            border-color: #67877c;
+        }
+
+        .progress > .track {
+            position: absolute;
+            background-color: var(--grey-1);
+            width: 100%;
+            height: 100%;
+        }
+
+        .progress > .complete {
+            position: absolute;
+            background-color: var(--green);
+            height: 100%;
+            transition: width linear 250ms;
+        }
+
+        .subtitles p[is="timer-el"] {
+            margin-top: 30pt;
+
+            font-size: 90pt !important;
+            line-height: 0px;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .subtitles {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 1em;
+            padding: 1em;
+            flex-grow: 1;
+            border: 2px solid var(--grey-1);
+        }
+
+        .subtitles ul, .subtitles ol {
+            text-align: left !important;
+        }
+
+        .subtitles .tint {
+            &.green {
+                --tint: var(--green);
+            }
+
+            &.red {
+                --tint: var(--red);
+            }
+
+            &.violet {
+                --tint: var(--violet)
+            }
+            animation: tinted 1000ms linear 250ms forwards;
+        }
+
+        .subtitles > *:not(.decoration, .spacer) {
+            /* display: flex; */
+            flex: 1;
+
+            flex-grow: 1;
+            flex-shrink: 1;
+
+            overflow: hidden;
+            --margin : 10px;
+            max-width: 85%;
+            width: max-content;
+
+            justify-content: center;
+            align-self: center;
+
+            position: relative;
+            text-align: center;
+            font-size: 40pt;
+
+            line-height: 40pt;
+
+            margin-top: var(--margin);
+            margin-bottom: var(--margin);
+            animation: float-in 1500ms cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        }
+
+        .subtitles > *:not(.decoration) > ul, .subtitles > *:not(.decoration) > ol {
+            margin: 0;
+        }
+
+        .subtitles > :has(.divider)::after {
+            position: absolute;
+            content: "";
+
+            bottom: calc(-1 * var(--margin));
+            left: -10pt;
+
+            width: 0.1px;
+            background-color: transparent;
+            height: 2px;
+
+            animation: rule 1500ms ease 1500ms forwards;
+        }
+
+        .subtitles > .spacer {
+            flex: 10;
+            flex-shrink: 10;
+        }
+
+        .subtitles > .decoration {
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+        }
+
+        * {
+        /* Ensure sane sizing of all elements */
+        box-sizing: border-box; 
+        }
+
+        @keyframes float-in {
+            0% {
+                overflow: hidden;
+                flex-basis: auto;
+                flex-grow: 0.1;
+                opacity: 0;
+                transform: translate(0, 25px);
+            }
+            
+            50% {
+                opacity: 1;
+                /* overflow: visible; */
+            }
+            
+            100% {
+                transform: translate(0, 0);
+                flex-basis: auto;
+                overflow: visible;
+                flex-grow: 1;
+            }
+        }
+
+        @keyframes rule {
+            0% {
+                background-color: var(--grey-1);
+                width: 0.1px;
+                opacity: 0.6;
+                filter: brightness(1);
+            }
+
+            50% {
+                opacity: 1;
+                filter: brightness(2);
+            }
+
+            95% {
+                opacity: 1;
+                width: calc(100% + 20px);
+            }
+
+            100% {
+                filter: brightness(1);
+                opacity: 0.6;
+                width: calc(100% + 20px);
+                background-color: var(--grey-1);
+
+            }
+        }
+
+        @keyframes tinted {
+            0% {
+                color: var(--white);
+            }
+
+            100% {
+                color: var(--tint);
+            }
+        }
+
+        .admin_back {
+            border: none;
+            position: absolute;
+            bottom: 0em;
+            right: 0em;
+            width: 7.5em;
+            height: 7.5em;
+            background-color: var(--grey-0);
+            z-index: 10;
+        }
+
+    </style>
+</head>
+<body>
+    <button class="admin_back"></button>
+    <div class="container">
+        <div class="player">
+            <button class="play-pause" style="display: none;">
+                <!-- PLAY -->
+                <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="32" height="32" fill="#67877c" 
+                    viewBox="0 0 256 256"
+                    class="play-icon"
+                >
+                    <path d="M228.23,134.69,84.15,222.81A8,8,0,0,1,72,216.12V39.88a8,8,0,0,1,12.15-6.69l144.08,88.12A7.82,7.82,0,0,1,228.23,134.69Z" opacity="0.2"></path>
+                    <path d="M232.4,114.49,88.32,26.35a16,16,0,0,0-16.2-.3A15.86,15.86,0,0,0,64,39.87V216.13A15.94,15.94,0,0,0,80,232a16.07,16.07,0,0,0,8.36-2.35L232.4,141.51a15.81,15.81,0,0,0,0-27ZM80,215.94V40l143.83,88Z"></path>
+                </svg>
+                <!-- PAUSE -->
+                <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="32" height="32" fill="#67877c" 
+                    viewBox="0 0 256 256"
+                    class="pause-icon"
+                    style="display: none;"
+                >
+                    <path d="M208,48V208a8,8,0,0,1-8,8H160a8,8,0,0,1-8-8V48a8,8,0,0,1,8-8h40A8,8,0,0,1,208,48ZM96,40H56a8,8,0,0,0-8,8V208a8,8,0,0,0,8,8H96a8,8,0,0,0,8-8V48A8,8,0,0,0,96,40Z" opacity="0.2"></path>
+                    <path d="M200,32H160a16,16,0,0,0-16,16V208a16,16,0,0,0,16,16h40a16,16,0,0,0,16-16V48A16,16,0,0,0,200,32Zm0,176H160V48h40ZM96,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V48A16,16,0,0,0,96,32Zm0,176H56V48H96Z"></path>
+                </svg>
+            </button>
+
+
+            <button class="back" style="display: none;">
+                <!-- BACK -->
+                <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="32" height="32" fill="#67877c" 
+                    viewBox="0 0 256 256"
+                >
+                    <path d="M200,47.88V208.12a8,8,0,0,1-12.19,6.65L59.7,134.65a7.83,7.83,0,0,1,0-13.3L187.81,41.23A8,8,0,0,1,200,47.88Z" opacity="0.2"></path>
+                    <path d="M199.81,34a16,16,0,0,0-16.24.43L64,109.23V40a8,8,0,0,0-16,0V216a8,8,0,0,0,16,0V146.77l119.57,74.78A15.95,15.95,0,0,0,208,208.12V47.88A15.86,15.86,0,0,0,199.81,34ZM192,208,64.16,128,192,48.07Z"></path>
+                </svg>
+            </button>
+
+            <div class="progress">
+                <div class="track"></div>
+                <div 
+                    class="complete"
+                    style="width: 0%;"
+                ></div>
+            </div>
+        </div>
+        <audio src="" class="hidden"></audio>
+        <div class="subtitles">
+            <div class="decoration">
+                <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="240" height="240"
+                    viewBox="0 0 22.96 22.96"
+                    fill="#67877c"
+                >
+                    <path class="whirlpool" opacity="0.15" d="M11.09,16.89a7,7,0,0,0,6.6-4.56,3.88,3.88,0,0,0,.21-.63,7.22,7.22,0,0,0,.22-1.09c0-.41.06-.83.06-1.18a6.5,6.5,0,0,0-1.85-4.57,7.2,7.2,0,0,0-4.91-2.17l-.36,0a8.2,8.2,0,0,0-3.38.64A9,9,0,0,0,4.26,5.89,9.62,9.62,0,0,0,2.54,9.42a8.65,8.65,0,0,0,0,4.2,9.07,9.07,0,0,0,8.62,7.17c6.79.27,11.73-4.55,11.73-10.17a10.76,10.76,0,0,0-.07-1.15,11,11,0,0,1,.19,2C23,17.82,17.26,23,11.11,23A11.3,11.3,0,0,1,0,11.48C0,5.16,4.22,0,11.48,0h.07a9.45,9.45,0,0,1,9.36,9.43A9.74,9.74,0,0,1,11.05,19h0a7.43,7.43,0,0,1-7.37-7.42,7.34,7.34,0,0,1,7.09-7.4h.05a5.12,5.12,0,0,1,.56,0c3.49.29,5.17,3.05,5.17,6.31a6.12,6.12,0,0,1-.38,2.15,4.26,4.26,0,0,0,.17-.82c0-.13,0-.28.05-.42s0-.29,0-.44,0-.42,0-.63a5.8,5.8,0,0,0-5-5.28l-.59,0a5.29,5.29,0,0,0-2.26.5A5.64,5.64,0,0,0,6.62,7a5.51,5.51,0,0,0-.8,1.17A6.92,6.92,0,0,0,5.39,9.2a7.06,7.06,0,0,0-.16.88,6.64,6.64,0,0,0,.5,3.66,5.51,5.51,0,0,0,5.32,3.15Z"/>
+                </svg>
+            </div>
+            <div id="setup" style="display: none;">
+                
+            </div>
+            <div class="spacer"></div>
+            <button class="begin" style="display: none;">Begin</button>
+            <div class="spacer" id="last-spacer"></div>
+        </div>
+    </div>
+
+    <script>
+
+        /** @type {HTMLDivElement} */
+        const reset_btn = document.querySelector('.admin_back');
+
+        /** @type {HTMLDivElement} */
+        const complete_bar = document.querySelector(".progress .complete");
+        
+        /** @type {HTMLAudioElement} */
+        const active_audio = document.querySelector("audio");
+        
+        /** @type {HTMLDivElement} */
+        const setup_container = document.querySelector('#setup');
+        
+        /** @type {HTMLDivElement} */
+        const subtitles_container = document.querySelector('.subtitles');
+        
+        /** @type {HTMLDivElement} */
+        const last_spacer = document.querySelector("#last-spacer");
+        
+        
+        /** @type {HTMLButtonElement} */
+        const btn_begin =  document.querySelector("button.begin");
+        
+        const states = [["none", "", a => a.play()], ["", "none", a => a.pause()]];
+        
+        const play_icon = document.querySelector("svg.play-icon");
+        const pause_icon = document.querySelector("svg.pause-icon");
+        
+        let prompts = [];
+        
+        let played = false;
+
+        let track_view = () =>
+            fetch("./manifest.json")
+                .then(res => res.json())
+                .then(r => Object.entries(r))
+                .then(arr => {
+                    setup_container.style.display = "flex";
+
+                    arr.forEach(([k, v]) => {
+                        let btn = document.createElement("button");
+                        btn.textContent = k;
+                        btn.addEventListener("click", function () {
+                            setup_container.remove();
+                            active_audio.src = v.src;
+                            prompts = Object.entries(v.subs)
+                                .map(([k, v]) => [parseFloat(k), v]);
+
+                            btn_begin.style.display = "block";
+                        });
+
+                        setup_container.append(btn);
+                    })
+                });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            track_view();
+        });
+
+        reset_btn
+            .addEventListener("click", () => {
+                window.location.reload();
+            })
+        
+        let current_prompt = 0;
+        let cancellable_prompt_loop = 0;
+        const update_prompts = () => {
+            console.log(active_audio.currentTime);
+            if(!prompts[current_prompt]) { return; }
+            let [t, html] = prompts[current_prompt];
+            console.log(t);
+            if (active_audio.currentTime >= t) {
+                let p = document.createElement("div");
+                p.innerHTML = html;
+                subtitles_container.insertBefore(p, last_spacer);
+                current_prompt++;
+            }
+            cancellable_prompt_loop = requestAnimationFrame(update_prompts);
+        }
+        
+        btn_begin
+            .addEventListener("click", function() {
+                this.remove();
+                let [_,__, f] = states[+played];
+                played = !played;
+
+                f(active_audio);
+                requestAnimationFrame(update_prompts);
+            });
+
+        document.querySelector("button.play-pause")
+            .addEventListener("click", () => {
+                let [_,__, f] = states[+played];
+                played = !played;
+
+                f(active_audio);
+            });
+
+        document.querySelector("button.back")
+            .addEventListener("click", () => {
+                active_audio.currentTime = 0;
+                active_audio.play();
+            });
+            
+        active_audio
+            .addEventListener("play", () => {
+                [play_icon.style.display, pause_icon.style.display] = states[0];
+            });
+
+        active_audio
+            .addEventListener("ended", () => {
+                cancelAnimationFrame(cancellable_prompt_loop);
+            });
+
+        active_audio
+            .addEventListener("pause", () => {
+                [play_icon.style.display, pause_icon.style.display] = states[1];
+            });
+
+        active_audio
+            .addEventListener("timeupdate", function() {
+                let p = this.currentTime / this.duration * 100;
+                complete_bar.style.width = `${p}%`;
+            });
+
+
+        let format_time = t => `${Math.floor(t / 60).toString().padStart(2, "0")}:${Math.floor(t % 60).toString().padStart(2, "0")}`;
+        class TimerEl extends HTMLParagraphElement {
+            constructor() {
+                super();
+
+                this.time_left = parseFloat(this.attributes.getNamedItem("duration")?.value || "60.0");
+
+                const shadow = this.attachShadow({mode : "closed"});
+
+                const text = document.createElement("span");
+
+                shadow.appendChild(text);
+
+                text.textContent = format_time(this.time_left);
+                
+                this.interval = setInterval(() => {
+                    if(this.time_left <= 0) {
+                        text.textContent = "TIME'S UP!"
+                        clearInterval(this.interval);
+                        return;
+                    }
+                    text.textContent = format_time(--this.time_left);
+                }, 1_000);
+            }
+        }
+
+        customElements.define("timer-el", TimerEl, { extends: "p" });
+    </script>
+</body>
+</html>

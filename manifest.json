@@ -1,0 +1,52 @@
+{
+    "Democracy": {
+        "src": "https://deus-audio.s3.eu-west-2.amazonaws.com/society-1-1.mp3",
+        "subs": {
+            "1.350": "<h1 style=\"color: var(--green);\">&ldquo;Democracy&rdquo;</h1>",
+            "2.370": "You must write the names of <i>four party members</i> present in this plane in the order you want them to be <span class=\"tint red\">sacrificed</span>, with&hellip;",
+            "8.320": "<b>(1)</b> being the most suitable candidate, and <br/><b>(4)</b> the least of the selection.<div class=\"divider\"></div>",
+            "13.36": "You have 90 seconds before we start <span class=\"tint red\">removing limbs</span>, starting now.",
+            "16.95": "<p is=\"timer-el\" duration=\"90\" />"
+        }
+    },
+    "Cards": {
+        "src": "https://deus-audio.s3.eu-west-2.amazonaws.com/society-2-1.mp3",
+        "subs": {
+            "0.050": "<h1 style=\"color: var(--green);\">&ldquo;Men at Arms&rdquo;</h1>",
+            "0.240": "Each of you have the same four cards in front of you.",
+            "3.010": "You will each select one card.<div class=\"divider\"/>",
+            "5.620": "The player who picks <span class=\"tint violet\">the lowest unique option</span> will receive one additional <span class=\"tint green\">boon</span>.",
+            "10.460": "All other players will also be affected by this card <span class=\"tint red\">without merit</span>."
+        }
+    },
+    "Liege (Intro)": {
+        "src": "https://deus-audio.s3.eu-west-2.amazonaws.com/society-3-1.mp3",
+        "subs" : {
+            "1.780": "<h1 style=\"color: var(--green);\">&ldquo;Liege&rdquo;</h1><div class=\"divider\"/>",
+            "4.950": "One member will be selected now to be the <span class=\"tint violet\">liege</span>."
+        }
+    },
+    "Liege (Liege)": {
+        "src": "https://deus-audio.s3.eu-west-2.amazonaws.com/society-3-2-1.mp3",
+        "subs": {
+            "0.050": "<h1 style=\"color: var(--green);\">&ldquo;Liege&rdquo; (My Liege)</h1>",
+            "0.260": "You were the N-th most suitable candidate in &ldquo;Democracy&rdquo;.",
+            "5.430": "Now you have the opportunity to exact <span class=\"tint red\">revenge</span>.<div class=\"divider\" />",
+            "11.060":"Follow the instructions to choose who is &ldquo;removed&rdquo; from the party,",
+            "15.940":"otherwise <span class=\"tint red\">the dice will choose for you</span>.",
+            "19.530":"You have a minute, starting now.",
+            "21.410":"<p is=\"timer-el\" duration=\"60\" />"
+        }
+    },
+    "Liege (Party)": {
+        "src": "https://deus-audio.s3.eu-west-2.amazonaws.com/society-3-2-2.mp3",
+        "subs": {
+            "0.050": "<h1 style=\"color: var(--green);\">&ldquo;Liege&rdquo; (Liege's Council)</h1>",
+            "0.290": "You will receive an envelope from your <span class=\"tint violet\">liege</span>.<div class=\"divider\" />",
+            "4.020": "Each of you can either choose to <span class=\"tint green\">accept</span> or <span class=\"tint red\">decline</span> this offer.",
+            "9.120": "This will be repeated until there are no new lieges, or a successful offer.",
+            "15.910":"A successful offer must have <span class=\"tint violet\">unanimous support</span>."
+        }
+    }
+    
+}
