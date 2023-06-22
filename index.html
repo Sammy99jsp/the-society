@@ -324,21 +324,29 @@
             }
         }
 
-        .admin_back {
+        .admin {
             border: none;
             position: absolute;
-            bottom: 0em;
-            right: 0em;
             width: 7.5em;
             height: 7.5em;
             background-color: black;
             z-index: 10;
         }
 
+        .admin_back {
+            bottom: 0em;
+            right: 0em;
+        }
+
+        .admin_fullscreen {
+            bottom: 0em;
+            left: 0em;
+        }
+
     </style>
 </head>
 <body>
-    <button class="admin_back"></button>
+    <button class="admin admin_back"></button>
     <div class="container">
         <div class="player">
             <button class="play-pause" style="display: none;">
@@ -411,6 +419,9 @@
 
         /** @type {HTMLDivElement} */
         const reset_btn = document.querySelector('.admin_back');
+
+        /** @type {HTMLDivElement} */
+        const fullscreen_btn = document.querySelector('.admin_fullscreen');
 
         /** @type {HTMLDivElement} */
         const complete_bar = document.querySelector(".progress .complete");
